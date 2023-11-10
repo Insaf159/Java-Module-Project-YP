@@ -17,7 +17,7 @@ public class Main {
             if (scanner.hasNextInt()) {
                 people = scanner.nextInt();
                 if (people > 1) {
-                    insaf.Calculate();
+                    insaf.calculate();
                     splitSum = insaf.totalCost / people;
                     int splitSumInt = (int) splitSum;
                     int lastDigit = splitSumInt % 10;
@@ -34,7 +34,7 @@ public class Main {
                     break;
 
                 } else if (people == 1) {
-                    System.out.println("Введено ошибочное значение, пожалуйста повторите попытку");// Смысла делить счет нет одному человеку
+                    System.out.println("Введено ошибочное значение (не получится поделить счет на одного человека), пожалуйста повторите попытку");// Смысла делить счет нет одному человеку
 
                 } else
                     System.out.println("Введено ошибочное значение, пожалуйста повторите попытку");// Смысла делить счет нет, если никого нет

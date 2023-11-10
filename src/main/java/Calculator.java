@@ -4,10 +4,10 @@ public class Calculator {
     Scanner scanner = new Scanner(System.in);
 
     double totalCost = 0.00;
-void Calculate (){
+void calculate (){
 
         String productName;
-        String allProducts = "";
+        StringBuilder allProducts = new StringBuilder();
         while (true) {
             System.out.println("Желаете добавить товар?\nВведите его название или слово \"завершить\" для разделения счета: ");
             productName = scanner.nextLine();
@@ -34,22 +34,26 @@ void Calculate (){
                 System.out.println("Введите стоимость товара в формате \"рубли,копейки\": ");
                 if (scanner.hasNextDouble()) {
                     double productCost = scanner.nextDouble();
-                    scanner.nextLine();
-                    System.out.println("Товар успешно добавлен!");
-                    totalCost += productCost;
-                    int totalCostInt = (int) totalCost;
-                    int lastDigit = totalCostInt % 10;
-                    int lastTwoDigits = totalCostInt % 100;
-                    if (lastTwoDigits >= 11 && lastTwoDigits <= 20) {
-                        System.out.println("Текущая сумма добавленных товаров: " + totalCost + " рублей");
-                    } else if (lastDigit == 1) {
-                        System.out.println("Текущая сумма добавленных товаров: " + totalCost + " рубль");
-                    } else if (lastDigit >= 2 && lastDigit <= 4) {
-                        System.out.println("Текущая сумма добавленных товаров: " + totalCost + " рубля");
-                    } else {
-                        System.out.println("Текущая сумма добавленных товаров: " + totalCost + " рублей");
-                    }
-                    allProducts += productName + "\n";
+                    if (productCost > 0) {
+                        scanner.nextLine();
+                        System.out.println("Товар успешно добавлен!");
+                        totalCost += productCost;
+                        int totalCostInt = (int) totalCost;
+                        int lastDigit = totalCostInt % 10;
+                        int lastTwoDigits = totalCostInt % 100;
+                        if (lastTwoDigits >= 11 && lastTwoDigits <= 20) {
+                            System.out.println("Текущая сумма добавленных товаров: " + totalCost + " рублей");
+                        } else if (lastDigit == 1) {
+                            System.out.println("Текущая сумма добавленных товаров: " + totalCost + " рубль");
+                        } else if (lastDigit >= 2 && lastDigit <= 4) {
+                            System.out.println("Текущая сумма добавленных товаров: " + totalCost + " рубля");
+                        } else {
+                            System.out.println("Текущая сумма добавленных товаров: " + totalCost + " рублей");
+                        }
+                        allProducts.append(productName).append("\n");
+                    } else
+                        System.out.println("Введено ошибочное значение (возможно ваше значение равно нулю, либо оно отрицательное), пожалуйста повторите попытку.");
+
                 } else
                     System.out.println("Введено ошибочное значение, пожалуйста повторите попытку (возможно вы ввели значение с точкой, а не запятой, необходимо вводить с запятой).");
 
