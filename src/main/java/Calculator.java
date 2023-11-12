@@ -10,8 +10,9 @@ void calculate (){
         StringBuilder allProducts = new StringBuilder();
         while (true) {
             System.out.println("Желаете добавить товар?\nВведите его название или слово \"завершить\" для разделения счета: ");
+
             productName = scanner.nextLine();
-            if(!productName.isEmpty()) {
+
 
                 if (productName.equalsIgnoreCase("завершить")) {
                     System.out.println("Все добавленные товары: ");
@@ -30,8 +31,10 @@ void calculate (){
                     }
 
                     break;
-                } else {
+                } else if(productName.isEmpty()) {
+                    System.out.println("Ошибка, строка пустая, пожалуйста повторите попытку.");
 
+                } else {
                     System.out.println("Введите стоимость товара в формате \"рубли,копейки\": ");
                     if (scanner.hasNextDouble()) {
                         double productCost = scanner.nextDouble();
@@ -52,15 +55,16 @@ void calculate (){
                                 System.out.println("Текущая сумма добавленных товаров: " + totalCost + " рублей");
                             }
                             allProducts.append(productName).append("\n");
-                        } else
+                        } else {
                             System.out.println("Введено ошибочное значение (возможно ваше значение равно нулю, либо оно отрицательное), пожалуйста повторите попытку.");
-
-                    } else
+                            scanner.nextLine();
+                        }
+                    } else {
                         System.out.println("Введено ошибочное значение, пожалуйста повторите попытку (возможно вы ввели значение с точкой, а не запятой, необходимо вводить с запятой).");
-
+                        scanner.nextLine();
+                    }
                 }
-            } else
-                System.out.println("Ошибка, строка пустая, пожалуйста повторите попытку.");
+
         }
 
 
